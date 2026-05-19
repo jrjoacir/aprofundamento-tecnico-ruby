@@ -24,5 +24,9 @@ end
 
 # Cadeia de Ancestrais de User: [Authenticated, User, Loggable, Object...]
 puts User.ancestors.inspect
-puts User.new.greet 
+puts User.new.greet
+# Resultado feito pela IA (Gemini):
 # => "Auth: Checking permissions -> Log: Calling greet -> Hello User!"
+
+# O resultado do teste foi o seguinte:
+# => "Auth: Checking permissions -> Hello User!"
