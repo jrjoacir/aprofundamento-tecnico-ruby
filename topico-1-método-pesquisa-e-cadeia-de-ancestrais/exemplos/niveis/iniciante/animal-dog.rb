@@ -1,3 +1,6 @@
+# Nível: Iniciante
+# Uso básico de herança e visualização da cadeia de herança com o método .ancestors.
+
 class Animal; end
 class Dog < Animal; end
 
