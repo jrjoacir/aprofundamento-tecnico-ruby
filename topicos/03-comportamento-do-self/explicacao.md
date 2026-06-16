@@ -2,24 +2,18 @@
 
 No Ruby, `self` é uma palavra-chave que sempre aponta para o **objeto atual em execução** (o contexto atual). No entanto, o papel do `self` muda drasticamente dependendo do escopo léxico onde ele é invocado.
 
-Compreender o `self` é vital porque ele altera a forma como métodos sem receptor explícito são resolvidos.
+Compreender o `self` é vital porque ele altere a forma como métodos sem receptor explícito são resolvidos.
 
 - **Top-level:** Fora de qualquer classe/módulo, self aponta para um objeto especial chamado main (uma instância de Object).
-
 - **No corpo de uma Classe/Módulo:** self aponta para o próprio objeto Classe ou Módulo.
-
 - **Em métodos de Instância:** self aponta para a instância específica que chamou o método.
-
 - **Em métodos de Classe:** self aponta para o objeto Classe.
-
 - **Dentro de instance_eval:** self é alterado para o objeto que recebeu o bloco.
-
 - **Dentro de class_eval:** self é alterado para a classe que recebeu o bloco.
 
 **Links para Aprofundamento:**
 
 - ~~Ruby-Doc: Control Expressions & Self~~
-
 - ~~AppSignal: Dissecting Self in Ruby~~
 
 # Entendendo melhor
@@ -35,19 +29,19 @@ No Ruby, **toda** linha de código está sendo executada dentro de um objeto. O 
 Ele serve a dois propósitos principais:
 
 - **O Receptor Padrão (Default Receiver):** Se você chama um método sem especificar quem é o dono dele (ex: apenas `puts "Oi"` em vez de `objeto.puts`), o Ruby assume que o receptor é o `self`.
-
 - **Armazenamento de Estado:** É através do `self` que o Ruby sabe onde buscar e salvar as variáveis de instância (`@variavel`).
-
 
 Vamos mapear os **5 contextos fundamentais** onde o `self` muda de identidade:
 
-| Contexto Léxico | Quem é o self? | Exemplo de Identidade |
-|-----------------|----------------|-----------------------|
-| **Top-level** (Fora de tudo) | O objeto `main` | Uma instância especial de `Object` |
-| **Corpo de uma Classe/Módulo** | A própria Classe ou Módulo | O objeto `User` (da classe `Class`) |
-| **Método de Instância** | A instância específica criada | `#<User:0x00007f...>` |
-| **Método de Classe** | A própria Classe | O objeto `User` |
-| **Dentro de `instance_eval`** | O objeto que recebeu o método | Qualquer objeto que você queira "invadir" |
+
+| Contexto Léxico                | Quem é o self?                | Exemplo de Identidade                     |
+| ------------------------------ | ----------------------------- | ----------------------------------------- |
+| **Top-level** (Fora de tudo)   | O objeto `main`               | Uma instância especial de `Object`        |
+| **Corpo de uma Classe/Módulo** | A própria Classe ou Módulo    | O objeto `User` (da classe `Class`)       |
+| **Método de Instância**        | A instância específica criada | `#<User:0x00007f...>`                     |
+| **Método de Classe**           | A própria Classe              | O objeto `User`                           |
+| **Dentro de `instance_eval`**  | O objeto que recebeu o método | Qualquer objeto que você queira "invadir" |
+
 
 ## Exemplos Detalhados e Passo a Passo
 
@@ -80,11 +74,8 @@ conta.inicializar_saldo
 **Por que isso acontece?**
 
 - No **Contexto 1**, o Ruby cria um objeto "embrulho" chamado `main` para que você possa rodar códigos soltos.
-
 - No **Contexto 2**, quando o interpretador lê `class ContaBancaria`, ele cria um objeto do tipo `Class` cujo nome é `ContaBancaria`. Durante a leitura do corpo, o `self` é esse objeto.
-
 - No **Contexto 3**, o método só roda quando a instância `conta` o chama. Portanto, `self` se torna essa instância específica.
-
 
 ### Nível: Intermediário (O Gotcha dos Setters e Métodos Privados)
 
