@@ -147,7 +147,7 @@ A comunicação que antes era em memória (via Gems) passa a ser assíncrona atr
 
 ### O conceito de ACL (Anti-Corruption Layer)
 
-Em sistemas legados ou integrações complexas (muito comuns na RD), um microsserviço precisa consumir dados de outro, mas não quer "corromper" seu próprio modelo mental com a bagunça do vizinho.
+Em sistemas legados ou integrações complexas, um microsserviço precisa consumir dados de outro, mas não quer "corromper" seu próprio modelo mental com a bagunça do vizinho.
 
 Criamos uma **Camada Anticorrupção (ACL)**. Ela traduz o que vem de fora para a Linguagem Ubíqua do seu contexto.
 
